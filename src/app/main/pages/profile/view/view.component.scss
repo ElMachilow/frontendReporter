@@ -1,0 +1,26 @@
+@import "@core/scss/base/pages/app-user.scss";
+@import "@core/scss/angular/libs/ratings.component.scss";
+
+/*.c-body {
+   height: 40vh;
+   overflow-y: auto;
+}
+ 
+ */
+ .dataInicial{
+   width: 50vw;
+}
+ @media screen and (min-width: 1024px) {
+ 
+   .c-body {
+      height: 40vh;
+      overflow-y: auto;
+   }
+   .dataInicial{
+      width: 11vw;
+   }
+   .dataDetail{
+      width: 7vw;
+   }
+
+ }

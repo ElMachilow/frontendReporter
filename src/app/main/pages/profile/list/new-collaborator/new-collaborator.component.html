@@ -1,0 +1,483 @@
+<form class="add-new-user modal-content pt-0" [formGroup]="form" (ngSubmit)="grabar($event)" #newUserForm="ngForm">
+
+    <div class="modal-body flex-grow-1">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="first-name-icon">Nombres</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                        </div>
+                        <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            formControlName="nombres" placeholder="Nombres"
+                            [class.error]="submitted && f.nombres.errors" />
+                    </div>
+                    <span *ngIf="submitted && f.nombres.errors" class="invalid-form">
+                        <small *ngIf="f.nombres.errors.required" class="form-text text-danger">Los nombres son
+                            obligatorios</small>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="first-name-icon">Apellidos</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                        </div>
+                        <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            formControlName="apellidos" placeholder="Apellidos"
+                            [class.error]="submitted && f.apellidos.errors" />
+                    </div>
+                    <span *ngIf="submitted && f.apellidos.errors" class="invalid-form">
+                        <small *ngIf="f.apellidos.errors.required" class="form-text text-danger">Los apellidos son
+                            obligatorios</small>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="form-label" for="basic-icon-default-fullname">Codigo Empleado</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'hexagon'"></span></span>
+                        </div>
+                        <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            formControlName="codigoEmpleado" placeholder="Codigo Empleado"
+                            [class.error]="submitted && f.codigoEmpleado.errors" />
+                    </div>
+                    <span *ngIf="submitted && f.codigoEmpleado.errors" class="invalid-form">
+            
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="form-label" for="basic-icon-default-fullname">codigo XP</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'octagon'"></span></span>
+                        </div>
+                        <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            formControlName="codigoXP" placeholder="codigo XP"
+                            [class.error]="submitted && f.codigoXP.errors" />
+                    </div>
+                    <span *ngIf="submitted && f.codigoXP.errors" class="invalid-form">
+                        <small *ngIf="f.codigoXP.errors.required" class="form-text text-danger">El codigo XP es
+                            obligatorio</small>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="form-label" for="user-role">Estado Neoris</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'flag'"></span></span>
+                        </div>
+                        <select id="user-role" class="form-control" formControlName="estadoNeoris"
+                            [class.error]="submitted && f.estadoNeoris.errors">
+                            <option value="Gestión">Gestión</option>
+                            <option value="ALTA">ALTA</option>
+                            <option value="RELIABILITY"> RELIABILITY </option>
+                            <option value="CELLS">CELLS</option>
+                            <option value="Proyecto">Proyecto</option>
+                            <option value="Salesforce">Salesforce</option>
+                            <option value="APX">APX</option>
+                            <option value="QUALYS">QUALYS</option>
+                            <option value="Forum">Forum</option>
+                            <option value="Escuela Salesforce">Escuela Salesforce</option>
+
+                        </select>
+                    </div>
+                    <span *ngIf="submitted && f.estadoNeoris.errors" class="invalid-form">
+                        <small *ngIf="f.estadoNeoris.errors.required" class="form-text text-danger">El Estado Neoris es
+                            obligatorio</small>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="form-label" for="basic-icon-default-fullname">DNI</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                        </div>
+                        <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            formControlName="dni" placeholder="DNI" [class.error]="submitted && f.dni.errors" />
+                    </div>
+                    <span *ngIf="submitted && f.dni.errors" class="invalid-form">
+                        <small *ngIf="f.dni.errors.required" class="form-text text-danger">El DNI es obligatorio</small>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="form-label" for="user-role">Pais</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'flag'"></span></span>
+                        </div>
+                        <select id="user-role" class="form-control" formControlName="pais"
+                            [class.error]="submitted && f.pais.errors">
+                            <option value="Perú">Perú</option>
+                            <option value="Colombia">Colombia</option>
+                            <option value="Argentina">Argentina</option>
+                            <option value="Chile">Chile</option>
+                            <option value="Mexico">Mexico</option>
+                        </select>
+                    </div>
+                    <span *ngIf="submitted && f.pais.errors" class="invalid-form">
+                        <small *ngIf="f.pais.errors.required" class="form-text text-danger">El País es
+                            obligatorio</small>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="form-label" for="basic-icon-default-fullname">Fecha Nacimiento</label>
+                     
+                    <ng2-flatpickr [setDate]="fechaNac" [config]="dateOptions" name="Date"
+                        formControlName="fechaNacimiento"  
+                        [class.error]="submitted && f.fechaNacimiento.errors">
+                     </ng2-flatpickr>
+
+                    <span *ngIf="submitted && f.fechaNacimiento.errors" class="invalid-form">
+                        <small *ngIf="f.fechaNacimiento.errors.required" class="form-text text-danger">La fecha de
+                            Nacimiento es obligatorio</small>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="contact-info-icon">Celular</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'smartphone'"></span></span>
+                        </div>
+                        <input type="number" id="contact-info-icon" class="form-control" name="contact-icon"
+                            formControlName="celular" placeholder="Celular"
+                            [class.error]="submitted && f.celular.errors" />
+                    </div>
+                    <span *ngIf="submitted && f.celular.errors" class="invalid-form">
+                        <small *ngIf="f.celular.errors.required" class="form-text text-danger">El celular es
+                            obligatorio</small>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="contact-info-icon">Fecha de Ingreso Neoris</label>
+                    <ng2-flatpickr [setDate]="fechaIngresoNeoris" [config]="dateOptions" name="Date"
+                        formControlName="fechaIngresoNeoris"  
+                        [class.error]="submitted && f.fechaIngresoNeoris.errors">
+                    </ng2-flatpickr>
+
+                    <span *ngIf="submitted && f.fechaIngresoNeoris.errors" class="invalid-form">
+                        <small *ngIf="f.fechaIngresoNeoris.errors.required" class="form-text text-danger">La Fecha de
+                            Ingreso
+                            es obligatorio</small>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="email-id-icon">Correo Neoris</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'mail'"></span></span>
+                        </div>
+                        <input type="email" id="email-id-icon" class="form-control" name="email-id-icon"
+                            formControlName="correoNeoris" placeholder="Correo Neoris"
+                            [class.error]="submitted && f.correoNeoris.errors" />
+                    </div>
+                    <span *ngIf="submitted && f.correoNeoris.errors" class="invalid-form">
+                        <small *ngIf="f.correoNeoris.errors.required" class="form-text text-danger">El Correo Neoris es
+                            obligatorio</small>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="contact-info-icon">Estado Pmo Bbva</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'bar-chart'"></span></span>
+                        </div>
+                        <select id="user-role" class="form-control" formControlName="estadoPmoBbva"
+                            [class.error]="submitted && f.estadoPmoBbva.errors">
+                            <option value="ACTIVO">ACTIVO</option>
+                            <option value="ALTA">ALTA</option>
+                            <option value="editor">editor</option> 
+                            <option value="subscriber">subscriber</option>
+                            <option value="ACTIVO NEORIS">ACTIVO NEORIS</option>
+
+                        </select>
+                    </div>
+                    <span *ngIf="submitted && f.estadoPmoBbva.errors" class="invalid-form">
+                         
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="email-id-icon">Correo Contractor</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'mail'"></span></span>
+                        </div>
+                        <input type="email" id="email-id-icon" class="form-control" name="email-id-icon"
+                            formControlName="correoContractor" placeholder="Correo Contractor"
+                            [class.error]="submitted && f.correoContractor.errors" />
+                    </div>
+                    <span *ngIf="submitted && f.correoContractor.errors" class="invalid-form">
+                       
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="contact-info-icon">Fecha Alta Contractor</label>
+
+                    <ng2-flatpickr [setDate]="fechaAltaContractor" [config]="dateOptions" name="Date"
+                        formControlName="fechaAltaContractor"  
+                         >
+                    </ng2-flatpickr>
+
+                     
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="email-id-icon">vdi Pmo</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'tool'"></span></span>
+                        </div>
+                        <input type="text" id="email-id-icon" class="form-control" name="email-id-icon"
+                            formControlName="vdiPmo" placeholder="vdi Pmo"
+                              />
+                    </div>
+                    <span *ngIf="submitted && f.vdiPmo.errors" class="invalid-form">
+                        
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="contact-info-icon">Fecha Alta Vdi</label> 
+                    <ng2-flatpickr [setDate]="fechaAltaVdi" [config]="dateOptions" name="Date"
+                        formControlName="fechaAltaVdi"  >
+                    </ng2-flatpickr>
+                     
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="custom-control custom-control-primary custom-switch">
+                        <p class="mb-50">Acceso Service Now</p>
+                        <input type="checkbox" formControlName="accesoServiceNow" checked class="custom-control-input"
+                            id="customSwitch1" [class.error]="submitted && f.accesoServiceNow.errors" />
+                        <label class="custom-control-label" for="customSwitch1"></label>
+                    </div>
+                </div>
+                 
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="contact-info-icon">Fecha Alta Acceso Service Now</label> 
+                    <ng2-flatpickr [setDate]="fechaAltaAccesoServiceNow" [config]="dateOptions" name="Date"
+                        formControlName="fechaAltaAccesoServiceNow" 
+                        [class.error]="submitted && f.fechaAltaAccesoServiceNow.errors">
+                    </ng2-flatpickr>
+
+                    
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="custom-control custom-control-primary custom-switch">
+                        <p class="mb-50">time Report</p>
+                        <input type="checkbox" formControlName="timeReport" checked class="custom-control-input"
+                            id="customSwitch2" [class.error]="submitted && f.timeReport.errors" />
+                        <label class="custom-control-label" for="customSwitch2"></label>
+                    </div>
+                    <span *ngIf="submitted && f.timeReport.errors" class="invalid-form">
+                         
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="custom-control custom-control-primary custom-switch">
+                        <p class="mb-50">Acceso Racf</p>
+                        <input formControlName="accesoRacf" type="checkbox" checked class="custom-control-input"
+                            id="customSwitch3" [class.error]="submitted && f.accesoRacf.errors" />
+                        <label class="custom-control-label" for="customSwitch3"></label>
+                    </div>
+                    <span *ngIf="submitted && f.accesoRacf.errors" class="invalid-form">
+                         
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="email-id-icon">Fecha Acceso Racf</label> 
+                    <ng2-flatpickr [setDate]="fechaAccesoRacf" [config]="dateOptions" name="Date"
+                        formControlName="fechaAccesoRacf"  
+                        [class.error]="submitted && f.fechaAccesoRacf.errors">
+                    </ng2-flatpickr>
+
+                    
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="contact-info-icon">Ip Vdi Pmo</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'tool'"></span></span>
+                        </div>
+                        <input formControlName="ipVdiPmo" type="number" id="contact-info-icon" class="form-control"
+                            name="contact-icon" placeholder="Ip Vdi Pmo"
+                            [class.error]="submitted && f.ipVdiPmo.errors" />
+                    </div>
+                    <span *ngIf="submitted && f.ipVdiPmo.errors" class="invalid-form">
+                         
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="form-label" for="user-role">Track Position</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'flag'"></span></span>
+                        </div>
+                        <select id="user-role" class="form-control" formControlName="trackPosition"
+                            [class.error]="submitted && f.trackPosition.errors">
+                            <option value=""></option> 
+                            <option *ngFor="let track of trackPosition" value="{{track.id}}">{{track.nombre}}</option>
+                        </select>
+                    </div>
+                    <span *ngIf="submitted && f.trackPosition.errors" class="invalid-form">
+                         
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="form-label" for="user-role">Management Area</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'flag'"></span></span>
+                        </div>
+                        <select id="user-role" class="form-control" formControlName="managementArea"
+                            [class.error]="submitted && f.managementArea.errors">
+                            <option value=""></option> 
+                            <option *ngFor="let management of managementArea" value="{{management.id}}">
+                                {{management.nombre}}</option>
+                        </select>
+                    </div>
+                    <span *ngIf="submitted && f.managementArea.errors" class="invalid-form">
+                         
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="form-label" for="user-role">Nivel Neoris</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'flag'"></span></span>
+                        </div>
+                        <select id="user-role" class="form-control" formControlName="nivelNeoris"
+                            [class.error]="submitted && f.nivelNeoris.errors">
+                            <option value=""></option> 
+                            <option *ngFor="let nivel of nivelNeoris" value="{{nivel.id}}">{{nivel.nombre}}</option>
+                        </select>
+                    </div>
+                    <span *ngIf="submitted && f.nivelNeoris.errors" class="invalid-form">
+                         
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="form-label" for="user-role">Plataforma BBVA</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'flag'"></span></span>
+                        </div>
+                        <select id="user-role" class="form-control" formControlName="plataformaBBVA"
+                            [class.error]="submitted && f.plataformaBBVA.errors">
+                            <option value=""></option> 
+                            <option *ngFor="let plataforma of plataformaBbva" value="{{plataforma.id}}">
+                                {{plataforma.nombre}}</option>
+
+                        </select>
+                    </div>
+                    <span *ngIf="submitted && f.plataformaBBVA.errors" class="invalid-form">
+                      
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="form-label" for="user-role">Estado Recruiting</label>
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span [data-feather]="'flag'"></span></span>
+                        </div>
+                        <select id="user-role" class="form-control" formControlName="estadoRecruiting"
+                            [class.error]="submitted && f.estadoRecruiting.errors">
+                            <option value=""></option>
+                            <option *ngFor="let estado of estadoRecruiting" value="{{estado.id}}">{{estado.nombre}}
+                            </option>
+
+                        </select>
+                    </div>
+                    <span *ngIf="submitted && f.estadoRecruiting.errors" class="invalid-form">
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mr-1" rippleEffect>Grabar</button>
+         
+    </div>
+</form>

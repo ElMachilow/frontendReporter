@@ -1,0 +1,363 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section class="invoice-add-wrapper">
+            <div class="row invoice-add">
+                <div class="col-xl-12 col-md-8 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{isUpdate ? 'Actualización de Atención de Peticiones' : 'Registro de
+                                Atención de Peticiones'}}</h4>
+                            <form class="form" [formGroup]="form">
+                                <div class="row">
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="basicSelect">Proyecto</label>
+                                            <select class="form-control"
+                                                [ngClass]="{ 'is-invalid': formSubmit && form.controls.proyecto.errors }"
+                                                formControlName="proyecto">
+                                                <option value>--Seleccione--</option>
+                                                <option [value]="item.id" *ngFor="let item of selectProyecto">
+                                                    {{item.descripcion}}</option>
+                                            </select>
+                                            <div *ngIf="formSubmit && form.controls.proyecto.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="form.controls.proyecto.errors.required">Proyecto es
+                                                    Obligatorio</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="basicSelect">Tipo de tarea</label>
+                                            <select class="form-control" formControlName="tipoTarea"
+                                                [ngClass]="{ 'is-invalid': formSubmit && form.controls.tipoTarea.errors }">
+                                                <option value>--Seleccione--</option>
+                                                <option [value]="item.id" *ngFor="let item of selectTarea">
+                                                    {{item.descripcion}}</option>
+                                            </select>
+                                            <div *ngIf="formSubmit && form.controls.tipoTarea.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="form.controls.tipoTarea.errors.required">Tipo Tarea es
+                                                    Obligatorio</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="basicSelect">Periodo</label>
+                                            <select class="form-control" formControlName="periodo"
+                                                [ngClass]="{ 'is-invalid': formSubmit && form.controls.periodo.errors }">
+                                                <option value>--Seleccione--</option>
+                                                <option [value]="item.idPeriodo" *ngFor="let item of selectPeriod">
+                                                    {{item.descripcion}}</option>
+                                            </select>
+                                            <div *ngIf="formSubmit && form.controls.periodo.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="form.controls.periodo.errors.required">Periodo es
+                                                    Obligatorio
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-12">
+                                        <div class="form-group">
+                                            <label for="city-column">Nro de Petición</label>
+                                            <input type="text" id="city-column" class="form-control" name="city-column"
+                                                formControlName="nroPeticion"
+                                                [ngClass]="{ 'is-invalid': formSubmit && form.controls.nroPeticion.errors }"
+                                                maxlength="25" />
+                                            <div *ngIf="formSubmit && form.controls.nroPeticion.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="form.controls.nroPeticion.errors.required">Nro de Petición
+                                                    es Obligatorio</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="country-floating">Nombre de Petición</label>
+                                            <input type="text" id="country-floating" class="form-control"
+                                                name="country-floating" formControlName="nombrePeticion"
+                                                [ngClass]="{ 'is-invalid': formSubmit && form.controls.nombrePeticion.errors }"
+                                                maxlength="150" />
+                                            <div *ngIf="formSubmit && form.controls.nombrePeticion.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="form.controls.nombrePeticion.errors.required">Nombre de
+                                                    Petición
+                                                    es Obligatorio</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-12 pt-2" *ngIf="isUpdate">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary" rippleEffect
+                                                (click)="UpdatePedition()"><i [data-feather]="'check'"
+                                                    class="mr-25"></i>
+                                                <span>Actualizar</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-12 col-md-8 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Detalle de Horas</h4>
+                            <div class="row mt-1 pl-1">
+                                <div class="col-12 px-0">
+                                    <button type="button" class="btn btn-primary btn-sm btn-add-new"
+                                        (click)="modalOpenForm(modalForm)" rippleEffect *ngIf="!isUpdate">
+                                        <i data-feather="plus" class="mr-25"></i>
+                                        <span class="align-middle">Nuevo Detalle</span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm btn-add-new"
+                                        (click)="modalOpenForm(modalForm)" rippleEffect *ngIf="isUpdate">
+                                        <i data-feather="plus" class="mr-25"></i>
+                                        <span class="align-middle">Nuevo Detalle</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <form action="#" class="invoice-repeater">
+                                    <div *ngFor="let item of items; let i = index">
+                                        <div class="row d-flex align-items-end">
+                                            <div class="col-md-2 col-12">
+                                                <div class="form-group">
+                                                    <label for="fechaAtencion{{ i }}">Fecha de Atención</label>
+                                                    <p>{{item.fechaAtencion | date: 'dd/MM/yyyy'}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2 col-12">
+                                                <div class="form-group">
+                                                    <label for="horas">Horas</label>
+                                                    <p>{{item.horas}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1 col-12">
+                                                <div class="form-group">
+                                                    <button type="button" rippleEffect
+                                                        class="btn btn-icon btn-flat-success"
+                                                        [ngbPopover]="item.descripcion" placement="right"
+                                                        popoverTitle="Descripción">
+                                                        <span [data-feather]="'eye'"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1 col-12">
+                                                <div class="form-group" *ngIf="isAdmin && item.idDescuento > 0">
+                                                    <button type="button" rippleEffect
+                                                        class="btn btn-icon btn-flat-warning"
+                                                        ngbPopover="Esta tarea tiene reducción de horas, más detalle click al botón 'Regularizar'."
+                                                        placement="right" popoverTitle="Descripción">
+                                                        <span [data-feather]="'alert-triangle'"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-12 mb-50">
+                                                <div class="form-group" *ngIf="isUpdate">
+                                                    <button class="btn btn-primary text-nowrap px-1"
+                                                        (click)="openModalupdateDetail(item,modalForm)" rippleEffect>
+                                                        <i [data-feather]="'check'" class="mr-25"></i>
+                                                        <span>Actualizar</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-12 mb-50" *ngIf="isUpdate && isAdmin">
+                                                <div class="form-group">
+                                                    <button class="btn btn-warning text-nowrap px-1"
+                                                        (click)="openModalDiscount(item,modalFormAdmin)" rippleEffect>
+                                                        <i [data-feather]="'alert-triangle'" class="mr-25"></i>
+                                                        <span>Regularizar</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-12 mb-50">
+                                                <div class="form-group">
+                                                    <button class="btn btn-danger text-nowrap px-1"
+                                                        (click)="deleteItem(i)" rippleEffect *ngIf="!isUpdate">
+                                                        <i data-feather="x" class="mr-25"></i>
+                                                        <span>Eliminar</span>
+                                                    </button>
+                                                    <button class="btn btn-danger text-nowrap px-1"
+                                                        (click)="deleteItemDB(item)" rippleEffect *ngIf="isUpdate">
+                                                        <i data-feather="x" class="mr-25"></i>
+                                                        <span>Eliminar</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="row mt-1 pl-1" *ngIf="!isUpdate">
+                                <div class="col-12 px-0">
+                                    <button type="button" class="btn btn-primary btn-sm btn-add-new" (click)="save()"
+                                        rippleEffect>
+                                        <i data-feather="save" class="mr-25"></i>
+                                        <span class="align-middle">Guardar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <ng-template #modalForm let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel1">Detalle de Horas</h4>
+                        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" tabindex="0" ngbAutofocus>
+                        <form [formGroup]="formDetails">
+                            <label>Fecha de Atención: </label>
+                            <div class="form-group">
+                                <ng2-flatpickr [setDate]="dateDetailUpdate" [config]="dateOptions" name="Date"
+                                    formControlName="fechaAtencion"
+                                    [ngClass]="{ 'is-invalid': formDetailsSubmit && formDetails.controls.fechaAtencion.errors }">
+                                </ng2-flatpickr>
+                                <div *ngIf="formDetailsSubmit && formDetails.controls.fechaAtencion.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="formDetails.controls.fechaAtencion.errors.required">Fecha de Atención
+                                        es Obligatorio</div>
+                                </div>
+                            </div>
+                            <label>Horas: </label>
+                            <div class="form-group">
+                                <input type="number" class="form-control number" formControlName="horas" max="8"
+                                    [ngClass]="{ 'is-invalid': formDetailsSubmit && formDetails.controls.horas.errors }">
+                                <div *ngIf="formDetailsSubmit && formDetails.controls.horas.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="formDetails.controls.horas.errors.required">Horas
+                                        es Obligatorio</div>
+                                    <div *ngIf="formDetails.controls.horas.hasError('max')">
+                                        Máximo de horas permitido 8.
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Descripción de Tarea: </label>
+                            <div class="form-group">
+                                <textarea class="form-control" id="basicTextarea" rows="3" formControlName="descripcion"
+                                    [ngClass]="{ 'is-invalid': formDetailsSubmit && formDetails.controls.descripcion.errors }"
+                                    maxlength="500"></textarea>
+                                <div *ngIf="formDetailsSubmit && formDetails.controls.descripcion.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="formDetails.controls.descripcion.errors.required">Descripcion
+                                        es Obligatorio</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer" *ngIf="!isUpdate">
+                        <button type="button" class="btn btn-primary" (click)="addDetail()" rippleEffect>
+                            <i data-feather="plus" class="mr-25"></i>
+                            <span class="align-middle">Agregar</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer" *ngIf="isUpdate">
+                        <button type="button" class="btn btn-primary" (click)="updateDetailPetition()" rippleEffect>
+                            <i data-feather="save" class="mr-25"></i>
+                            <span class="align-middle">{{textButtonUpdate}}</span>
+                        </button>
+                    </div>
+                </ng-template>
+                <!-- / Modal -->
+
+                <!-- Modal -->
+                <ng-template #modalFormAdmin let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel1">Detalle de Horas</h4>
+                        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" tabindex="0" ngbAutofocus>
+                        <form [formGroup]="formDiscount">
+                            <div class="row">
+                                <div class="col-md-8  form-group">
+                                    <label for="fechaAtencion{{ i }}">Fecha de Atención</label>
+                                    <input type="text" class="form-control" formControlName="fechaAtencion" readonly>
+                                </div>
+
+                                <div class="col-md-4 form-group">
+                                    <label>Horas: </label>
+                                    <input type="number" class="form-control number" formControlName="horas" min="1"
+                                        max="8" readonly>
+                                </div>
+                            </div>
+                            <label>Descripción de Tarea: </label>
+                            <div class="form-group">
+                                <textarea class="form-control" id="basicTextarea" rows="3" formControlName="descripcion"
+                                    maxlength="500" readonly></textarea>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>Fecha de Descuento: </label>
+                                    <ng2-flatpickr [setDate]="dateDiscountUpdate" [config]="dateOptions" name="Date"
+                                        formControlName="fechaDescuento"
+                                        [ngClass]="{ 'is-invalid': formDiscountSubmit && formDiscount.controls.fechaDescuento.errors }">
+                                    </ng2-flatpickr>
+                                    <div *ngIf="formDiscountSubmit && formDiscount.controls.fechaDescuento.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="formDiscount.controls.fechaDescuento.errors.required">Fecha de
+                                            Atención
+                                            es Obligatorio</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Horas a Reducir: </label>
+                                    <input type="number" class="form-control number" formControlName="horasDescuento"
+                                        [ngClass]="{ 'is-invalid': formDiscountSubmit && formDiscount.controls.horasDescuento.errors }">
+                                    <div *ngIf="formDiscountSubmit && formDiscount.controls.horasDescuento.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="formDiscount.controls.horasDescuento.errors.required">Horas
+                                            es Obligatorio</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Motivo de Reducción: </label>
+                            <div class="form-group">
+                                <textarea class="form-control" id="basicTextarea" rows="3" formControlName="motivo"
+                                    [ngClass]="{ 'is-invalid': formDiscountSubmit && formDiscount.controls.motivo.errors }"
+                                    maxlength="500"></textarea>
+                                <div *ngIf="formDiscountSubmit && formDiscount.controls.motivo.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="formDiscount.controls.motivo.errors.required">Motivo de Reducción
+                                        es Obligatorio</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button *ngIf="!isUpdateDiscount" type="button" class="btn btn-primary" (click)="registerDiscount()"
+                            rippleEffect>
+                            <i data-feather="save" class="mr-25"></i>
+                            <span class="align-middle">Registrar</span>
+                        </button>
+                        <button *ngIf="isUpdateDiscount" type="button" class="btn btn-primary" (click)="updateDiscount()"
+                            rippleEffect>
+                            <i data-feather="check" class="mr-25"></i>
+                            <span class="align-middle">Actualizar</span>
+                        </button>
+                        <button *ngIf="isUpdateDiscount" type="button" class="btn btn-danger" (click)="deleteDiscount()"
+                            rippleEffect>
+                            <i data-feather="x" class="mr-25"></i>
+                            <span class="align-middle">Eliminar</span>
+                        </button>
+                    </div>
+                </ng-template>
+                <!-- / Modal -->
+            </div>
+        </section>
+    </div>

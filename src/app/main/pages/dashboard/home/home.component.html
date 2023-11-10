@@ -1,0 +1,17 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <div class="row match-height" *ngIf="!isAdmin">
+            <div class="col-lg-4 col-md-6 col-12">
+                <app-summary-hours [periods]="periods"></app-summary-hours>
+            </div>
+            <div class="col-lg-8 col-md-6 col-12">
+                <app-distribution></app-distribution>
+            </div>
+        </div>
+        <div class="row match-height" *ngIf="isAdmin">
+            <div class="col-lg-4 col-md-6 col-12">
+                <app-summary-hours-total [periods]="periods"></app-summary-hours-total>
+            </div>
+        </div>
+    </div>
+</div>

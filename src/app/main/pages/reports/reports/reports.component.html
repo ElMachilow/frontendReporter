@@ -1,0 +1,44 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+    <!-- Collapse start -->
+      <section id="collapsible">
+        <div class="row">
+          <div class="col-sm-12">
+              <div class="collapse-icon">
+                <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                  <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                      <span class="lead collapse-title"> Reporte de Resumen de Horas</span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                     <app-rpt-hours [selectPeriodo]="selectPeriodo"></app-rpt-hours>
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                      <span class="lead collapse-title"> Reporte Liquidación de Horas - Servicio de Soporte y Mantenimiento de Aplicaciones </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                     <app-rpt-liquidacion [listPeriod]="listPeriod" [selectPeriodo]="selectPeriodo"></app-rpt-liquidacion>
+                    </ng-template>
+                  </ngb-panel>
+
+                  <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                      <span class="lead collapse-title">Reporte Peticiones por Periodo </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                     <app-rpt-petition-analyst [listPeriod]="listPeriod" [selectPeriodo]="selectPeriodo"></app-rpt-petition-analyst>
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </div>
+
+          </div>
+        </div>
+      </section>
+      <!-- Collapse end -->
+  
+    </div>
+  </div>
+  

@@ -1,0 +1,38 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <div class="card">
+            <div class="card-body">
+                <div class="users-list-filter">
+                    <form [formGroup]="form">
+                        <section>
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <fieldset class="form-group">
+                                        <div class="form-group">
+                                            <label for="basicSelect">Periodo</label>
+                                            <select class="form-control" formControlName="periodo" [ngClass]="{ 'is-invalid': submitted && form.controls.periodo.errors }">
+                                                <option value>--Seleccione--</option>
+                                                <option [value]="item.value" *ngFor="let item of selectPeriodo">
+                                                    {{item.name}}</option>
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-12 col-md-4 pt-2">
+                                    <fieldset class="form-group">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary" rippleEffect (click)="generarPdf()">
+                                                <span [data-feather]="'file-text'" [class]="'mr-25'"></span>Generar
+                                                PDF</button>
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<!-- ngx-datatables responsive -->
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <div class="card">
+            <div class="row">
+
+                <div class="col-md-12 col-12 m-1">
+                    <div class="row pr-1 pb-1 pb-md-0 align-items-center w-100">
+                        <div class="col-10 col-md-2 mt-2 ml-1 ml-md-0 mt-md-0">
+                            <fieldset class="form-group mb-0">
+                                <ng-select placeholder="Proyecto" [items]="selectProyecto"
+                                    (change)="filterByProject($event)" bindLabel="name"></ng-select>
+                            </fieldset>
+                        </div>
+                        <div class="col-10 col-md-2 mt-2 ml-1 ml-md-0 mt-md-0">
+                            <fieldset class="form-group mb-0">
+                                <ng-select placeholder="Tarea" [items]="selectTarea" (change)="filterByTarea($event)"
+                                    bindLabel="name"></ng-select>
+                            </fieldset>
+                        </div>
+                        <div class="col-10 col-md-2 mt-2 ml-1 ml-md-0 mt-md-0">
+                            <fieldset class="form-group mb-0">
+                                <ng-select placeholder="Periodo" [items]="selectPeriodo"
+                                    (change)="filterByPeriodo($event)" bindLabel="name"></ng-select>
+                            </fieldset>
+                        </div>
+     
+                        <div class="col-10 col-md-4 pr-0">
+                            <label class="d-flex align-items-center mb-0 ml-1 ml-md-0"><input class="form-control"
+                                    placeholder="Nombre de Petición" (keyup)="filterByNombre($event)"
+                                    (search)="filterByNombre($event)"/></label>
+                        </div>
+                        <div class="col-md-2 col-12">
+                            <button class="btn btn-primary ml-2" routerLink="/main/horas/registrar" rippleEffect> <i
+                                    data-feather="plus" class="mr-25"></i>
+                                <span class="align-middle">Nuevo Registro</span></button>
+                        </div>
+                    </div>
+   
+                </div>
+            </div>
+            <ngx-datatable (activate)="onActivate($event)" class="bootstrap core-bootstrap"
+                [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" rowHeight="auto" [limit]="5"
+                [rows]="rows" [scrollbarH]="true">
+
+                <ngx-datatable-column name="Proyecto" prop="descripcionProyecto" [width]="10"></ngx-datatable-column>
+                <ngx-datatable-column name="Tarea" prop="descripcionTarea" [width]="50"></ngx-datatable-column>
+                <ngx-datatable-column name="periodo" prop="descripcionPeriodo" [width]="50"></ngx-datatable-column>
+                <ngx-datatable-column name="Nro." prop="numero" [width]="50"></ngx-datatable-column>
+                <ngx-datatable-column name="Nombre" prop="nombre" [width]="200"></ngx-datatable-column>
+
+                <ngx-datatable-column name="Acciones" [width]="120" [sortable]="false">
+                    <ng-template ngx-datatable-cell-template>
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-primary btn-sm " rippleEffect><i data-feather="check"
+                                    class="mr-25" (click)="edit(row)"></i>
+                                <span class="align-middle">Actualizar</span></button>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+</div>

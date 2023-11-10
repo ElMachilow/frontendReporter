@@ -1,0 +1,58 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <div class="card">
+            <div class="card-body">
+                <div class="users-list-filter">
+                    <form [formGroup]="form">
+                        <section>
+                            <div class="row">
+                                <div class="col-12 col-md-3">
+                                    <fieldset class="form-group">
+                                        <div class="form-group">
+                                            <label for="basicSelect">Usuarios</label>
+                                            <select class="form-control" formControlName="usuarios"
+                                                [ngClass]="{ 'is-invalid': submitted && form.controls.usuarios.errors }">
+                                                <option value>--Seleccione--</option>
+                                                <option [value]="item.value" *ngFor="let item of selectUsuario">
+                                                    {{item.name}}</option>
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-12 col-md-3">
+
+                                    <div class="form-group">
+                                        <label for="basicSelect">Periodo</label>
+                                        <select class="form-control" formControlName="periodo"
+                                            [ngClass]="{ 'is-invalid': submitted && form.controls.periodo.errors }">
+                                            <option value>--Seleccione--</option>
+                                            <option [value]="item.value" *ngFor="let item of selectPeriodo">
+                                                {{item.name}}</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-12 col-md-6 pt-2">
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary" rippleEffect
+                                            (click)="generarPdf()">
+                                            <span [data-feather]="'file-text'" [class]="'mr-25'"></span>Generar
+                                            PDF</button>
+                                        <button type="button" class="ml-1 btn btn-primary" rippleEffect
+                                            (click)="generarExcel()">
+                                            <span [data-feather]="'file-text'" [class]="'mr-25'"></span>Generar
+                                            Excel</button>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

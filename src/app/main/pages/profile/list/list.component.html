@@ -1,0 +1,227 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+
+    <section class="users-list-wrapper">
+      <!-- users filter start -->
+
+      <!-- users filter end -->
+
+      <div class="card">
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <div class="d-flex justify-content-between align-items-center m-1">
+              <a (click)="exportAsXLSX()" class="btn btn-outline-secondary float-right mr-1">Exportar CSV</a>
+            </div>
+
+          </div>
+          <div class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end">
+
+            <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
+
+              <button class="btn btn-primary ml-1" rippleEffect (click)="modalOpenSecondary(modalSecondary)">
+                <i data-feather="upload" class="mr-25"></i><span class="d-none d-sm-inline-block">Cargar Archivo</span>
+              </button>
+            </div>
+            <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
+
+              <button class="btn btn-primary ml-1" rippleEffect (click)="modalOpen(modalBasic,'create')">
+                <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i><span
+                  class="d-none d-sm-inline-block">Agregar Colaborador</span>
+              </button>
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <div class="d-flex justify-content-between align-items-center m-1">
+              <label class="d-flex align-items-center">Show
+                <select class="form-control mx-25" [(ngModel)]="selectedOption">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+                entries</label>
+            </div>
+          </div>
+          <!--    <div class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end">
+            <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
+              <label class="d-flex align-items-center ml-1 ml-md-0">Search:<input [(ngModel)]="searchValue"
+                  name="searchValue" type="search" class="form-control ml-25" (keyup)="filterUpdate($event)"
+                  (search)="filterUpdate($event)" /></label>
+            </div>
+          </div>  -->
+        </div>
+
+        <ngx-datatable [rows]="user" [rowHeight]="75" class="bootstrap core-bootstrap" [limit]="selectedOption"
+          [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true">
+          <ngx-datatable-column name="Nombres" prop="nombres" [width]="150">
+            <ng-template let-row="row" let-status="value" ngx-datatable-cell-template>
+              <div class="d-flex align-items-center">
+
+                <div class="avatar mr-1 ml-0 bg-light-success">
+                  <div class="avatar-content">{{ row?.nombres | initials }}</div>
+                </div>
+
+                <div class="cell-line-height">
+                  <a class="font-medium-1 d-block"><span
+                      class="font-weight-bold text-wrap">{{ row?.nombres | lowercase}}</span>
+                  </a>
+                <!--  <span class="text-muted font-small-2"> {{row?.nivelNeoris.nombre}} </span>-->
+                </div>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Apellido" prop="apellidos" [width]="100">
+            <ng-template let-row="row" let-status="value" ngx-datatable-cell-template>
+
+              {{ row?.apellidos | lowercase}}
+
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Codigo XP" prop="codigoXp" [width]="50">
+            <ng-template let-row="row" let-status="value" ngx-datatable-cell-template>
+
+              {{ row?.codigoXp }}
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <!-- <ngx-datatable-column name="Gerencia" prop="Correo" [width]="80">
+            <ng-template let-row="row" let-status="value" ngx-datatable-cell-template>
+              <div class="text-wrap">
+                <p>{{ row?.correoNeoris}}</p>
+              </div>
+            </ng-template>
+          </ngx-datatable-column> -->
+
+
+          <ngx-datatable-column name="Gerencia" prop="gerencia" [width]="80">
+            <ng-template let-row="row" let-status="value" ngx-datatable-cell-template>
+              <div class="text-wrap">
+                <p>{{ row?.dataBBBVA[0]?.gerencia.nombre}}</p>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Staffer" prop="Staffer" [width]="100">
+            <ng-template let-row="row" let-status="value" ngx-datatable-cell-template style="width: 10vw;">
+              <div class="text-wrap">
+                {{ row?.dataBBBVA[0]?.staffer | lowercase}}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Lider Tecnico" prop="LiderTecnico" [width]="100">
+            <ng-template let-row="row" let-status="value" ngx-datatable-cell-template style="width: 10vw;">
+
+              <div class="text-wrap">
+                {{ row?.dataBBBVA[0]?.techLead | lowercase}}
+              </div>
+
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Scrum Master" prop="ScrumMaster" [width]="100">
+            <ng-template let-row="row" let-status="value" ngx-datatable-cell-template style="width: 10vw;">
+
+              <div class="text-wrap">
+                {{row?.dataBBBVA[0]?.scrumMaster}}
+              </div>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Acciones" [width]="40" [sortable]="false">
+            <ng-template ngx-datatable-cell-template let-row="row">
+
+              <!--  <button type="button" class="btn btn-primary btn-sm " rippleEffect
+                routerLink="/main/profile/view/{{ row.codigoXp }}"><i data-feather="search" class="mr-25"></i>
+                <span class="align-middle">Detalles</span></button>
+
+              <button type="button" class="btn btn-primary btn-sm " (click)="modalOpen(modalBasic,'edit',row.codigoXp)"
+                rippleEffect><i data-feather="edit" class="mr-25"></i>
+                <span class="align-middle">Editar</span></button>
+            -->
+
+              <div ngbDropdown container="body">
+                <button ngbDropdownToggle type="button" class="btn icon-btn btn-sm hide-arrow" rippleEffect>
+                  <span [data-feather]="'more-vertical'" [class]="'cursor-pointer'"></span>
+                </button>
+                <div ngbDropdownMenu>
+                  <a routerLink="/main/profile/view/{{ row.codigoXp }}" ngbDropdownItem><span
+                      [data-feather]="'file-text'" [size]="16" [class]="'mr-50'"></span> Detalles</a>
+                  <a (click)="modalOpen(modalBasic,'edit',row.codigoXp)" ngbDropdownItem><span [data-feather]="'edit'"
+                      [size]="16" [class]="'mr-50'"></span> Editar</a>
+                  
+                </div>
+              </div>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+        </ngx-datatable>
+      </div>
+    </section>
+
+
+  </div>
+</div>
+
+<!-- Modal -->
+<ng-template #modalBasic let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel1">{{tituloModal}}</h4>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    <app-new-collaborator [paramsCollborator]="[paramsCollborators]"
+      (messageEvent)="modal.dismiss('Cross click');getUsuarios();"></app-new-collaborator>
+  </div>
+</ng-template>
+<!-- / Modal -->
+
+
+
+
+<!-- Modal -->
+<ng-template #modalSecondary let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="myModalLabel160">Cargar Archivo</h5>
+    <button type="button" class="close" (click)="cerrarModalFile()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+
+
+   <!--  <form class="add-new-user modal-content pt-0" [formGroup]="inputXlsForm" (ngSubmit)="saveFile($event)">
+      <input formControlName="xls" type="file" id="myfile" name="myfile">
+
+      <button type="submit" class="btn btn-primary mr-1">
+        Guardar
+      </button>
+    </form> -->
+    <div class="mb-3">   
+      <label for="formFile" class="form-label">Selecione el Archivo</label>
+      <input (change)="onChange($event)"  class="form-control" type="file" id="formFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+      <span   class="invalid-form">
+        <small *ngIf=" fileRequired" class="form-text text-danger">Debe adjuntar un archivo Excel para continuar</small>
+    </span>
+    </div>  
+    <button (click)="onUpload()" class="btn btn-primary mr-1">
+      Guardar
+    </button>
+
+    <!-- ; modal.close('Accept click') <label for="formFile" class="form-label">Selecione el Archivo</label>
+    <input (change)="upload($event.target.files)" class="form-control" type="file" id="formFile">
+ -->
+  </div>
+  <div class="modal-footer">
+
+  </div>
+</ng-template>
+<!-- / Modal -->

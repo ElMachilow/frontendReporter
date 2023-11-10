@@ -1,0 +1,364 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+
+    <!-- page users view start -->
+    <section class="app-user-view">
+      <div class="row">
+        <div class="col-xl-10 col-lg-8 col-md-7">
+          <div class="card user-card">
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-xl-4 col-lg-12 d-flex flex-column justify-content-between border-container-lg">
+                  <div class="user-avatar-section">
+                    <div class="d-flex justify-content-start">
+                      <div class="mr-1 ml-0">
+                        <div class="bg-light-success rounded p-3">
+                          <h2 class="m-0 text-success">
+                            {{ user?.nombres | initials }}
+                          </h2>
+                        </div>
+                      </div>
+                      <div class="d-flex flex-column  ">
+                        <div class="user-info mb-1 text-wrap dataInicial"  >
+                          <h4 class="text-wrap" style="word-wrap: break-all !important">{{user?.nombres | lowercase}}</h4>
+                          <span class="text-wrap" style="word-wrap: break-all !important">{{user?.correoNeoris}}</span>
+                        </div>
+
+                        <div class="d-flex flex-wrap">
+                          <div *ngIf="isAdmin" class="mb-1 badge badge-light-success">{{user?.estadoPmoBbva}}</div>
+                        </div>
+                        <div *ngIf="isAdmin" class="d-flex ">
+
+                          <button type="button" class="btn btn-outline-primary" (click)="modalOpenVC(modalVC)"
+                            rippleEffect>
+                            Feedback
+                          </button>
+                        </div>
+                      </div>
+
+                      
+
+                    </div>
+                  </div> 
+                </div>
+
+
+                <div class="col-xl-4 col-lg-12 mt-2 mt-xl-0">
+                  <div class="user-info-wrapper">
+                    <div class="d-flex flex-wrap">
+                      <div class="user-info-title">
+                        <i data-feather="user" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">DNI</span>
+                      </div>
+                      <p class="card-text mb-0">{{user?.dni}}</p>
+                    </div>
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="calendar" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">Fecha Ingreso</span>
+                      </div>
+                      <p class="card-text mb-0">{{user?.fechaIngresoNeoris}}</p>
+                    </div>
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="calendar" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">Fecha Nac.</span>
+                      </div>
+                      <p class="card-text mb-0">{{user?.fechaNacimiento}}</p>
+                    </div>
+
+
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="flag" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">Pais</span>
+                      </div>
+                      <p class="card-text mb-0">{{user?.pais}}</p>
+                    </div>
+                    <div class="d-flex flex-wrap">
+                      <div class="user-info-title">
+                        <i data-feather="phone" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">Celular</span>
+                      </div>
+                      <p class="card-text mb-0">{{user?.celular}}</p>
+                    </div>
+
+
+
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-12 mt-2 mt-xl-0">
+                  <div class="user-info-wrapper">
+
+                    <div class="d-flex flex-wrap">
+                      <div class="user-info-title" >
+                        <i data-feather="bar-chart" class="mr-1" ></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">Nivel Neoris</span>
+                      </div>
+                      <p class="card-text mb-0 text-wrap dataDetail" style=" word-wrap: break-all !important">{{user?.nivelNeoris.nombre}}</p>
+                    </div>
+ 
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="flag" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">Codigo XP</span>
+                      </div>
+                      <p class="card-text mb-0">{{user?.codigoXp}}</p>
+                    </div>
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="check" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">Estado</span>
+                      </div>
+                      <p class="card-text mb-0">{{user?.estadoNeoris}}</p>
+                    </div>
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="star" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">Trak Position</span>
+                      </div>
+                      <p class="card-text mb-0 text-wrap dataDetail" style=" word-wrap: break-all !important">{{user?.trackPosition.nombre}}</p>
+                    </div>
+                    <div class="d-flex flex-wrap">
+                      <div class="user-info-title">
+                        <i data-feather="key" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">Codigo</span>
+                      </div>
+                      <p class="card-text mb-0">{{user?.codigoEmpleado}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-4 col-md-5">
+          <div class="card plan-card border-primary">
+            <div class="card-header d-flex justify-content-between align-items-center pt-75 pb-1">
+              <h5 class="mb-0">Mas Detalles</h5>
+
+
+
+              <div class="d-flex flex-wrap my-50">
+                <div class="user-info-title">
+                  <i data-feather="target" class="mr-1"></i>
+                  <span class="card-text user-info-title font-weight-bold mb-0">Proyecto Actual</span>
+                </div>
+                <p class="card-text mb-0 text-wrap dataDetail" style=" word-wrap: break-all !important">{{user?.dataBBBVA[0]?.fteProyecto}}</p>
+              </div>
+            </div>
+            <div class="card-body"> 
+              <button class="btn btn-primary text-center btn-block" (click)="modalOpenLG(modalLG)" rippleEffect>Ver
+                más</button>
+
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <!-- information starts -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title mb-2">Historial de Proyectos</h4>
+            </div>
+
+            <div class="card-body c-body">
+              <ul class="timeline">
+
+                <li class="timeline-item" *ngFor="let item of user?.proyectosNeoris.reverse()">
+                  <span class="timeline-point timeline-point-indicator"
+                    [ngClass]="item.estado == true?'timeline-point-info':''"></span>
+                  <div class="timeline-event">
+                    <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                      <h6>{{item.codigo}}</h6>
+                      <span class="timeline-event-time">{{item.inicio}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                      <p>{{item.nombre}}</p>
+                      <span class="timeline-event-time" *ngIf="item.fin">
+                        {{item.fin}}
+                      </span>
+                      <span class="timeline-event-time" *ngIf="item.fin == null">
+                        Actualidad
+                      </span>
+
+
+                    </div>
+                  </div>
+
+                </li>
+
+              </ul>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card ">
+            <div class="card-header">
+              <h4 class="card-title mb-2">Especialidades</h4>
+            </div>
+            <div class="card-body c-body">
+              <div *ngFor="let item of user?.especialidades">
+                <div class="0 col-md-6">
+                  <p class="card-text">{{item.nombre}}</p>
+                  <div class="rating">
+                    <ngb-rating [rate]="item.nivel" [readonly]="true" [max]="5">
+                      <ng-template let-fill="fill" let-index="index"><span class="fa fa-star-o"
+                          [class.fa-star]="fill === 100"></span></ng-template>
+                    </ngb-rating>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Permissions Ends -->
+      </div>
+    </section>
+
+
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<ng-template #modalLG let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="myModalLabel160">Mas Detalles</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+
+    <section class="app-user-view">
+      <div class="row">
+        <div class="col-xl-12 col-lg-8 col-md-7">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 mt-2 mt-xl-0">
+              <div class="user-info-wrapper">
+
+                <div class="d-flex flex-wrap">
+                  <div class="user-info-title">
+                    <i data-feather="mail" class="mr-1"></i>
+                    <span class="card-text user-info-title font-weight-bold mb-0">Contrator</span>
+                  </div>
+                  <p class="card-text mb-0">{{user?.correoContractor}}</p>
+                </div>
+
+                <div class="d-flex flex-wrap my-50">
+                  <div class="user-info-title">
+                    <i data-feather="airplay" class="mr-1"></i>
+                    <span class="card-text user-info-title font-weight-bold mb-0">Plataforma</span>
+                  </div>
+                  <p class="card-text mb-0">{{user?.plataformaBBVA.nombre}}</p>
+                </div>
+                <div class="d-flex flex-wrap my-50">
+                  <div class="user-info-title">
+                    <i data-feather="hexagon" class="mr-1"></i>
+                    <span class="card-text user-info-title font-weight-bold mb-0">Gerencia</span>
+                  </div>
+                  <p class="card-text mb-0">{{user?.dataBBBVA[0]?.gerencia.nombre}}</p>
+                </div>
+                <div class="d-flex flex-wrap my-50">
+                  <div class="user-info-title">
+                    <i data-feather="octagon" class="mr-1"></i>
+                    <span class="card-text user-info-title font-weight-bold mb-0">Staff</span>
+                  </div>
+                  <p class="card-text mb-0">{{user?.dataBBBVA[0]?.tipoStaff.nombre}}</p>
+                </div>
+                <div class="d-flex flex-wrap my-50">
+                  <div class="user-info-title">
+                    <i data-feather="octagon" class="mr-1"></i>
+                    <span class="card-text user-info-title font-weight-bold mb-0">Staffer</span>
+                  </div>
+                  <p class="card-text mb-0">{{user?.dataBBBVA[0]?.staffer}}</p>
+                </div>
+                <div class="d-flex flex-wrap my-50">
+                  <div class="user-info-title">
+                    <i data-feather="trello" class="mr-1"></i>
+                    <span class="card-text user-info-title font-weight-bold mb-0">Scrum Master</span>
+                  </div>
+                  <p class="card-text mb-0">{{user?.dataBBBVA[0]?.scrumMaster}}</p>
+                </div>
+                <div class="d-flex flex-wrap my-50">
+                  <div class="user-info-title">
+                    <i data-feather="user-check" class="mr-1"></i>
+                    <span class="card-text user-info-title font-weight-bold mb-0">Tech Lead</span>
+                  </div>
+                  <p class="card-text mb-0">{{user?.dataBBBVA[0]?.techLead}}</p>
+                </div>
+                <div class="d-flex flex-wrap my-50">
+                  <div class="user-info-title">
+                    <i data-feather="target" class="mr-1"></i>
+                    <span class="card-text user-info-title font-weight-bold mb-0">Proyecto Actual</span>
+                  </div>
+                  <p class="card-text mb-0 text-wrap">{{user?.dataBBBVA[0]?.fteProyecto}}</p>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div> 
+      </div> 
+    </section> 
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('Accept click')" rippleEffect>
+      Aceptar
+    </button>
+  </div>
+</ng-template>
+<!-- / Modal -->
+
+
+
+<!-- Modal -->
+<ng-template #modalVC let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalCenterTitle">Feedback</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body c-body" tabindex="0" ngbAutofocus>
+    <ul class="timeline">
+
+      <li class="timeline-item" *ngFor="let item of user?.proyectosNeoris">
+        <span class="timeline-point timeline-point-indicator"
+          [ngClass]="item.estado == true?'timeline-point-info':''"></span>
+        <div class="timeline-event">
+          <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+            <h6>{{item.codigo}}</h6>
+
+            <span class="timeline-event-time"  >
+              
+            </span>
+          </div>
+          <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1" *ngFor="let feed of item.feedbacks">
+            <p>{{feed.feedback}}</p> 
+
+          </div>
+        </div>
+
+      </li>
+
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('Accept click')" rippleEffect>
+      Aceptar
+    </button>
+  </div>
+</ng-template>
+<!-- / Modal -->
