@@ -8,7 +8,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ListComponent } from "./list/list.component";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { FormsModule } from '@angular/forms';
-
+import { InitialsPipe } from "@core/pipes/initials.pipe";
 import { Ng2FlatpickrModule } from 'ng2-flatpickr';
 
 import { CoreCommonModule } from '@core/common.module';
@@ -42,7 +42,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ViewComponent, ListComponent, NewCollaboratorComponent ],
+  declarations: [ViewComponent, ListComponent, NewCollaboratorComponent,InitialsPipe ],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,

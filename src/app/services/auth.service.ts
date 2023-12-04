@@ -11,6 +11,9 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   iniciarSesion(objeto: any){
+    console.log('ingresa a login 2');
+
     return this.http.post(`${apiUrl}/auth/iniciarSesion`,objeto);
+    
   }
 }
