@@ -46,4 +46,28 @@ describe('ViewComponent', () => {
     expect(mockModalService.open).toHaveBeenCalledWith('modalLG', { centered: true, size: 'lg' });
   });
 
+  it('should open modal vertically centered for modalOpenVC', () => {
+    const mockModal = {} as any;
+    mockModalService.open.and.returnValue(mockModal);
+    component.modalOpenVC('modalVC');
+    expect(mockModalService.open).toHaveBeenCalledWith('modalVC', { centered: true });
+  });
+
+  it('should call getProfileByXp on getUsuario', () => {
+    // Configura el método getProfileByXp para devolver un observable
+    const mockData = {name:'marcelo', edad:22, dni:75128779};
+    mockCollaboratorsService.getProfileByXp.and.returnValue(of(mockData));
+  
+    // Llama a getUsuario
+    component.xp = '123';
+    component.getUsuario();
+  
+    // Verifica que se haya llamado a getProfileByXp con el valor correcto
+    expect(mockCollaboratorsService.getProfileByXp).toHaveBeenCalledWith('123');
+    
+    // En este punto, el observable devuelto debería ser el observable simulado
+    // y debería haber llamado a subscribe correctamente.
+    expect(component.user).toEqual(mockData);
+  });
+
 });
