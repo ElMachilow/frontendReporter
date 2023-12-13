@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Collaborator } from 'app/Models/collaborator.model';
 
 
@@ -17,7 +17,7 @@ const apiUrl = environment.apiUrl;
 export class CollaboratorsService {
   private message = new BehaviorSubject<string>('');
   public customMessage = this.message.asObservable();
-
+  private value = 'my value';
   constructor(private http: HttpClient)  { }
 
   getProfileByXp( xpColaborador: String){
@@ -96,5 +96,18 @@ export class CollaboratorsService {
     return this.http.post<any>(`${apiUrl}/file/upload`, formData);
   }
 */
+  getPromiseValue() {
+    return Promise.resolve('promise value');
+  }
 
+  getObservableValue() {
+    return of('value');
+  }
+
+  getValue(){
+    return this.value;
+  }
+  setValue(value: string){
+    return this.value = value;
+  }
 }
